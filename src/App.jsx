@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import SearchBar from "./components/SearchBar";
 import axios from "axios";
 import WeatherCard from "./components/WeatherCard";
-import video from "./video.mp4"
-import { useState } from "react";
 
 function App() {
   // Create state variables
@@ -48,34 +46,32 @@ function App() {
 
   return (
     <>
-     <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-blue-100">
-  {/* 1. Video as a background at z‑0 */}
-  <video
-    autoPlay
-    loop
-    muted
-    className="absolute inset-0 object-cover w-full h-full z-0"
-  >
-    <source src={video} type="video/mp4" />
-  </video>
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-blue-100">
+        {/* 1. Video as a background at z‑0 */}
+        <video
+          autoPlay
+          loop
+          muted
+          className="absolute inset-0 object-cover w-full h-full z-0"
+        >
+          <source src="/video.mp4" type="video/mp4" />
+        </video>
 
-  {/* 2. Overlay card at z‑10 */}
-  <div className="relative z-10 bg-black bg-opacity-75 p-4 rounded-lg shadow-lg max-w-md w-full">
-    <h1 className="text-3xl font-bold text-white text-center mb-4">
-      Weather App
-    </h1>
-    <SearchBar fetchWeather={fetchWeather} />
-    {loading && (
-      <p className="mt-4 text-center text-gray-300">Loading…</p>
-    )}
-    {error && (
-      <p className="mt-4 text-center text-red-400">{error}</p>
-    )}
-    {Weather && <WeatherCard weather={Weather} />}
-  </div>
-</div>
-
-      
+        {/* 2. Overlay card at z‑10 */}
+        <div className="relative z-10 bg-black bg-opacity-75 p-4 rounded-lg shadow-lg max-w-md w-full">
+          <h1 className="text-3xl font-bold text-white text-center mb-4">
+            Weather App
+          </h1>
+          <SearchBar fetchWeather={fetchWeather} />
+          {loading && (
+            <p className="mt-4 text-center text-gray-300">Loading…</p>
+          )}
+          {error && (
+            <p className="mt-4 text-center text-red-400">{error}</p>
+          )}
+          {Weather && <WeatherCard weather={Weather} />}
+        </div>
+      </div>
     </>
   );
 }
